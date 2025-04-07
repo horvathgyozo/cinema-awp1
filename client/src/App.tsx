@@ -1,15 +1,20 @@
-import { Loader2 } from "lucide-react";
-import { Button } from "./components/ui/button";
+import { Background } from "./Background";
+import { Navigation } from "./Navigation";
+import { Home } from "./Home";
+import { Footer } from "./Footer";
+import { MovieDetail } from "./MovieDetail";
 
 function App() {
   return (
-    <>
-      <h1>Hello world!</h1>
-      <Button disabled>
-        <Loader2 className="animate-spin" />
-        Please wait
-      </Button>
-    </>
+    <div className="bg-background flex flex-col">
+      <Background />
+      <Navigation />
+      <main className="min-h-[70vh] mx-auto px-4 py-8 mt-10 z-10">
+        <Home />
+        <MovieDetail />
+      </main>
+      <Footer />
+    </div>
   );
 }
 
