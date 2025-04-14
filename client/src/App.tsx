@@ -7,10 +7,10 @@ import { useState } from "react";
 import moviesData from "./dummy-data/movies.json";
 
 function App() {
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
   const selectedMovie = selectedId
     ? moviesData.find((movie) => movie.id === selectedId)
-    : null;
+    : undefined;
 
   return (
     <div className="bg-background flex flex-col">

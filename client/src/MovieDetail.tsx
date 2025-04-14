@@ -10,13 +10,16 @@ import {
 import { Movie } from "./MovieCard";
 
 interface MovieDetailProps {
-  movie: Movie;
+  movie: Movie | undefined;
 }
 
 export const MovieDetail = ({ movie }: MovieDetailProps) => {
+  if (!movie) {
+    return null;
+  }
   // Screenings to display
   const currentScreenings = movie.screenings;
-  console.log(currentScreenings);
+  // console.log(currentScreenings);
 
   return (
     <div className="max-w-5xl mx-auto">
