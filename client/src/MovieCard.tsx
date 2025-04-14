@@ -11,15 +11,11 @@ import { Badge } from "./components/ui/badge";
 import movies from "./dummy-data/movies.json";
 
 type Movie = (typeof movies)[number];
-type MovieCardProps = {
+interface MovieCardProps {
   movie: Movie;
-  key: string;
-};
+}
 
-export const MovieCard = (props: MovieCardProps) => {
-  console.log(props.key);
-  const { movie } = props;
-
+export const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <div className="cursor-pointer">
       <Card className="overflow-hidden flex flex-col h-full pt-0 hover:shadow-lg transition-shadow duration-300">
