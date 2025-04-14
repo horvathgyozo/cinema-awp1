@@ -8,25 +8,7 @@ import {
   TableCell,
 } from "./components/ui/table";
 
-export const MovieDetail = () => {
-  // Sample movie data
-  const movie = {
-    id: 1,
-    title: "Dune: Part Two",
-    description:
-      "Follow the mythic journey of Paul Atreides as he unites with Chani and the Fremen while on a path of revenge against the conspirators who destroyed his family.",
-    release_year: 2024,
-    duration: 166,
-    genre: "Sci-Fi",
-    director: "Denis Villeneuve",
-    image_path: "/movies/dune.jpg",
-    screenings: [
-      { id: 1, start_time: "2024-04-15T18:00:00", price: 1800 },
-      { id: 2, start_time: "2024-04-16T20:30:00", price: 1900 },
-      { id: 3, start_time: "2024-04-17T14:00:00", price: 1700 },
-    ],
-  };
-
+export const MovieDetail = ({ movie }) => {
   // Screenings to display
   const currentScreenings = movie.screenings;
   console.log(currentScreenings);

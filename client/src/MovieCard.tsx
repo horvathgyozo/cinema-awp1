@@ -15,9 +15,13 @@ interface MovieCardProps {
   movie: Movie;
 }
 
-export const MovieCard = ({ movie }: MovieCardProps) => {
+export const MovieCard = ({ movie, onCardSelect }: MovieCardProps) => {
+  const handleClick = () => {
+    onCardSelect(movie.id);
+  };
+
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer" onClick={handleClick}>
       <Card className="overflow-hidden flex flex-col h-full pt-0 hover:shadow-lg transition-shadow duration-300">
         <div className="relative h-[400px] overflow-hidden">
           <img
