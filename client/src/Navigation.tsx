@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { Button } from "./components/ui/button";
 import { Card } from "./components/ui/card";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const Navigation = () => (
   <nav className="border-b z-50 shadow-lg rounded-full sticky top-5 mx-auto max-w-6xl w-11/12">
@@ -27,9 +28,7 @@ export const Navigation = () => (
             <Button variant="outline">Logout</Button>
             <Button variant="ghost">Login</Button>
             <Button>Register</Button>
-            <button className="bg-background rounded-full flex items-center justify-center w-8 h-8 border">
-              🌙
-            </button>
+            <ThemeToggle />
           </div>
         </div>
       </div>
