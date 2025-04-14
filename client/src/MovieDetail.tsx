@@ -7,13 +7,16 @@ import {
   TableBody,
   TableCell,
 } from "./components/ui/table";
-import { Movie } from "./MovieCard";
+import { useParams } from "react-router";
+import moviesData from "./dummy-data/movies.json";
 
-interface MovieDetailProps {
-  movie: Movie | undefined;
-}
+export const MovieDetail = () => {
+  const { movieId } = useParams();
 
-export const MovieDetail = ({ movie }: MovieDetailProps) => {
+  const movie = movieId
+    ? moviesData.find((movie) => movie.id === parseInt(movieId))
+    : undefined;
+
   if (!movie) {
     return null;
   }
@@ -75,7 +78,7 @@ export const MovieDetail = ({ movie }: MovieDetailProps) => {
         </div>
         <div>
           <img
-            src={movie.image_path}
+            src={`/${movie.image_path}`}
             alt={movie.title}
             className="w-full rounded-lg shadow-lg"
           />

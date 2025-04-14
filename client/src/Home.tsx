@@ -1,11 +1,7 @@
 import { MovieCard } from "./MovieCard";
 import moviesData from "./dummy-data/movies.json";
 
-interface HomeProps {
-  onCardSelect: (id: number) => void;
-}
-
-export const Home = ({ onCardSelect }: HomeProps) => {
+export const Home = () => {
   return (
     <div className="container max-w-5xl mx-auto px-4">
       <div className="flex justify-between items-center mb-4">
@@ -14,7 +10,7 @@ export const Home = ({ onCardSelect }: HomeProps) => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {moviesData.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} onCardSelect={onCardSelect} />
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
     </div>
