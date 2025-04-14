@@ -1,8 +1,9 @@
 import { Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useTheme } from "./ThemeContext";
 
 export const ThemeToggle = () => {
-  const [theme, setTheme] = useState("light");
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     console.log("toggle render");
