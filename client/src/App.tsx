@@ -6,12 +6,12 @@ import { Layout } from "./Layout";
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movies/:movieId" element={<MovieDetail />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="movies/:movieId" element={<MovieDetail />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
