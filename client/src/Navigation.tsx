@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { Button } from "./components/ui/button";
 import { Card } from "./components/ui/card";
 
@@ -11,9 +12,12 @@ export const Navigation = () => (
             <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
               Screenings
             </span>
-            <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+            <Link
+              to="/"
+              className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            >
               Movies
-            </span>
+            </Link>
             <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
               My Bookings
             </span>
