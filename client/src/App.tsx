@@ -17,8 +17,11 @@ function App() {
       <Background />
       <Navigation />
       <main className="min-h-[70vh] mx-auto px-4 py-8 mt-10 z-10">
-        <Home onCardSelect={setSelectedId} />
-        {selectedId ? <MovieDetail movie={selectedMovie} /> : null}
+        {selectedId === null ? (
+          <Home onCardSelect={setSelectedId} />
+        ) : (
+          <MovieDetail movie={selectedMovie} />
+        )}
       </main>
       <Footer />
     </div>
