@@ -1,7 +1,11 @@
 import { MovieCard } from "./MovieCard";
 import moviesData from "./dummy-data/movies.json";
 
-export const Home = ({ onCardSelect }) => {
+interface HomeProps {
+  onCardSelect: (id: number) => void;
+}
+
+export const Home = ({ onCardSelect }: HomeProps) => {
   return (
     <div className="container max-w-5xl mx-auto px-4">
       <div className="flex justify-between items-center mb-4">

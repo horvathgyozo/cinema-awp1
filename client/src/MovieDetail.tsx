@@ -7,8 +7,13 @@ import {
   TableBody,
   TableCell,
 } from "./components/ui/table";
+import { Movie } from "./MovieCard";
 
-export const MovieDetail = ({ movie }) => {
+interface MovieDetailProps {
+  movie: Movie;
+}
+
+export const MovieDetail = ({ movie }: MovieDetailProps) => {
   // Screenings to display
   const currentScreenings = movie.screenings;
   console.log(currentScreenings);
