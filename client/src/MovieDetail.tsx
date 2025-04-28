@@ -9,9 +9,11 @@ import {
 } from "./components/ui/table";
 import { useParams } from "react-router";
 import moviesData from "./dummy-data/movies.json";
+import { useState } from "react";
 
 export const MovieDetail = () => {
   const { movieId } = useParams();
+  const [page, setPage] = useState(0);
 
   const movie = movieId
     ? moviesData.find((movie) => movie.id === parseInt(movieId))
@@ -20,8 +22,13 @@ export const MovieDetail = () => {
   if (!movie) {
     return null;
   }
+
+  const limit = 3;
   // Screenings to display
-  const currentScreenings = movie.screenings;
+  const currentScreenings = movie.screenings.slice(
+    page * limit,
+    page * limit + limit
+  );
   // console.log(currentScreenings);
 
   return (
@@ -64,13 +71,17 @@ export const MovieDetail = () => {
               </Table>
             </div>
             <div className="flex justify-center gap-2 mt-4">
-              <Button variant="outline" disabled>
+              <Button
+                onClick={() => setPage(page - 1)}
+                variant="outline"
+                disabled={page <= 0}
+              >
                 Previous
               </Button>
               <span className="flex items-center px-4 text-muted-foreground">
-                Page 1 of 1
+                Page {page + 1} of {movie.screenings.length / limit}
               </span>
-              <Button variant="outline" disabled>
+              <Button onClick={() => setPage(page + 1)} variant="outline">
                 Next
               </Button>
             </div>
