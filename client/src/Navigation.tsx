@@ -25,9 +25,12 @@ export const Navigation = () => {
               >
                 Movies
               </Link>
-              <span className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+              <Link
+                to={"/my-bookings"}
+                className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              >
                 My Bookings
-              </span>
+              </Link>
             </div>
             <div className="flex items-center space-x-4">
               {isAuthenticated ? (

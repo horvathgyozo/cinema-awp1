@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 import { useAuthStore } from "./useAuthStore";
+import { useNavigate } from "react-router";
 
 export default function Login() {
   // Uncontrolled form components
@@ -33,6 +34,7 @@ export default function Login() {
 
   // Controlled form component
   const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -52,6 +54,7 @@ export default function Login() {
     e.preventDefault();
     // console.log(formData);
     login(formData.email);
+    navigate("/");
   };
 
   return (
