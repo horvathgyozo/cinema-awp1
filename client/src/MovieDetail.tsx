@@ -5,39 +5,50 @@ import {
   TableRow,
   TableHead,
   TableBody,
-  TableCell,
+  // TableCell,
 } from "./components/ui/table";
 import { useParams } from "react-router";
 // import moviesData from "./dummy-data/movies.json";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Movie } from "./MovieCard";
+import { useQuery } from "@tanstack/react-query";
 
 export const MovieDetail = () => {
   const { movieId } = useParams();
   const [page, setPage] = useState(0);
-  const [movie, setMovie] = useState<Movie>({
-    id: 0,
-    title: "",
-    description: "",
-  });
+  // const [movie, setMovie] = useState<Movie>({
+  //   id: 0,
+  //   title: "",
+  //   description: "",
+  // });
 
-  useEffect(() => {
-    const getMovie = async () => {
+  const {
+    isPending,
+    isError,
+    data: movie,
+    error,
+  } = useQuery<Movie>({
+    queryKey: ["movies", movieId],
+    queryFn: async () => {
       const response = await fetch(
         `http://127.0.0.1:8000/api/movies/${movieId}`
       );
-      setMovie(await response.json());
-    };
-    getMovie();
-  }, [movieId]);
+      const movie = await response.json();
+      return movie;
+    },
+  });
+
+  if (isPending) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   // const movie = movieId
   //   ? moviesData.find((movie) => movie.id === parseInt(movieId))
   //   : undefined;
-
-  if (!movie) {
-    return null;
-  }
 
   // const limit = 3;
   // // Screenings to display
