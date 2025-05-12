@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 import { useAuthStore } from "./useAuthStore";
 import { useNavigate } from "react-router";
+import { useMutation } from "@tanstack/react-query";
 
 export default function Login() {
   // Uncontrolled form components
@@ -33,6 +34,23 @@ export default function Login() {
   // };
 
   // Controlled form component
+  const loginMutation = useMutation({
+    mutationFn: async (credentials) => {
+      const response = await fetch("http://127.0.0.1:8000/api/login", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
+      const data = await response.json();
+      return data;
+    },
+    onSuccess: (data) => {
+      login(data.user, data.token);
+    },
+  });
   const login = useAuthStore((state) => state.login);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -50,10 +68,13 @@ export default function Login() {
       [target.name as "email" | "password"]: target.value,
     });
   };
-  const handleSubmit4 = (e: React.FormEvent) => {
+  const handleSubmit4 = async (e: React.FormEvent) => {
     e.preventDefault();
     // console.log(formData);
-    login(formData.email);
+    await loginMutation.mutateAsync({
+      email: formData.email,
+      password: formData.password,
+    });
     navigate("/");
   };
 

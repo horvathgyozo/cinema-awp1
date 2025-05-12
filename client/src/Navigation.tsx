@@ -5,7 +5,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useAuthStore } from "./useAuthStore";
 
 export const Navigation = () => {
-  const username = useAuthStore((state) => state.username);
+  const username = useAuthStore((state) => state.user?.email);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const logout = useAuthStore((state) => state.logout);
 
