@@ -15,8 +15,8 @@ interface AuthStore {
   logout: () => void;
 }
 
-export const useAuthStore = create<AuthStore>(
-  persist(
+export const useAuthStore = create(
+  persist<AuthStore>(
     (set) => ({
       user: null,
       isAuthenticated: false,

@@ -35,7 +35,7 @@ export default function Login() {
 
   // Controlled form component
   const loginMutation = useMutation({
-    mutationFn: async (credentials) => {
+    mutationFn: async (credentials: { email: string; password: string }) => {
       const response = await fetch("http://127.0.0.1:8000/api/login", {
         method: "post",
         headers: {
